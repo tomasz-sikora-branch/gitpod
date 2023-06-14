@@ -59,11 +59,11 @@ export function schedule(wsInfo: WorkspaceInfo, sessionId: string): void {
     }
 
     const workspacePageCloseCompatible = () => {
-        if (isSaaS && !pageCloseCompatibile) {
-            sendHeartBeat(true);
-            return;
-        }
-        beaconWorkspacePageClose();
+        // if (isSaaS && !pageCloseCompatibile) {
+        //     sendHeartBeat(true);
+        //     return;
+        // }
+        // beaconWorkspacePageClose();
     }
 
     const unloadListener = () => { workspacePageCloseCompatible() };
@@ -74,10 +74,10 @@ export function schedule(wsInfo: WorkspaceInfo, sessionId: string): void {
     const intervalHandle = setInterval(() => {
         // add an additional random value between 5 and 15 seconds
         const randomInterval = Math.floor(Math.random() * (15000 - 5000 + 1)) + 5000;
-        if (lastActivity + activityInterval + randomInterval < new Date().getTime()) {
-            // no activity, no heartbeat
-            return;
-        }
+        // if (lastActivity + activityInterval + randomInterval < new Date().getTime()) {
+        //     // no activity, no heartbeat
+        //     return;
+        // }
         sendHeartBeat();
     }, activityInterval);
     toCancel.push(Disposable.create(() => clearInterval(intervalHandle)));

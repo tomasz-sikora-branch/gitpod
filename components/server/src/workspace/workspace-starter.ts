@@ -1635,7 +1635,7 @@ export class WorkspaceStarter {
             lastValidWorkspaceInstanceId,
             volumeSnapshots !== undefined,
         );
-        const userTimeoutPromise = this.entitlementService.getDefaultWorkspaceTimeout(user, new Date());
+        //const userTimeoutPromise = this.entitlementService.getDefaultWorkspaceTimeout(user, new Date());
 
         let featureFlags = instance.configuration!.featureFlags || [];
         if (volumeSnapshots !== undefined) {
@@ -1668,7 +1668,7 @@ export class WorkspaceStarter {
         spec.setClass(instance.workspaceClass!);
 
         if (workspace.type === "regular") {
-            spec.setTimeout(this.userService.workspaceTimeoutToDuration(await userTimeoutPromise));
+            spec.setTimeout("90m");
         }
         spec.setAdmission(admissionLevel);
         spec.setVolumeSnapshot(volumeSnapshotInfo);
